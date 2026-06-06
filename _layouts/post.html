@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
+  <meta name="author" content="{{ site.author }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:title"       content="{{ page.title }}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
+  <meta property="og:url"         content="{{ page.url | prepend: site.url }}">
+  {% if page.image %}
+  <meta property="og:image" content="{{ site.url }}/img{{ page.image }}">
+  {% else %}
+  <meta property="og:image" content="{{ site.url }}{{ site.avatar_image }}">
+  {% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="{{ page.title }}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
+  <meta name="twitter:image"       content="{% if page.image %}{{ site.url }}/img{{ page.image }}{% else %}{{ site.url }}{{ site.avatar_image }}{% endif %}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/portfolio.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H0QYL3FJL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H0QYL3FJL5');
+  </script>
+</head>
+
+<body>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║              NAVBAR                  ║
+       ╚══════════════════════════════════════╝ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+
+      <a href="/" class="nav-logo">AS</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li>
+          <a href="{{ site.resume_url }}" class="nav-resume" target="_blank" rel="noopener">
+            Resume ↗
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║            POST HERO                 ║
+       ╚══════════════════════════════════════╝ -->
+  <header class="post-hero">
+
+    {% if page.image %}
+    <div class="post-hero-img" style="background-image: url('/img{{ page.image }}')"></div>
+    {% elsif page.cover %}
+    <div class="post-hero-gradient" style="background: {{ page.cover }};">
+      <span class="post-hero-icon">{{ page.cover_icon }}</span>
+    </div>
+    {% endif %}
+
+    <div class="container">
+      <div class="post-meta-top">
+        <a href="/" class="post-back">← Back to Portfolio</a>
+      </div>
+      <h1 class="post-title">{{ page.title }}</h1>
+      <div class="post-meta-bottom">
+        <time>{{ page.date | date: "%B %d, %Y" }}</time>
+        <span aria-hidden="true">·</span>
+        <span>{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║           POST CONTENT               ║
+       ╚══════════════════════════════════════╝ -->
+  <main class="post-main">
+    <div class="container">
+
+      <article class="post-body">
+        {{ content }}
+      </article>
+
+      <div class="post-footer-nav">
+        <a href="/" class="btn btn-outline">← Back to Portfolio</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║              FOOTER                  ║
+       ╚══════════════════════════════════════╝ -->
+  <footer class="footer">
+    <p>© {{ site.time | date: "%Y" }} {{ site.title }}</p>
+  </footer>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║              SCRIPTS                 ║
+       ╚══════════════════════════════════════╝ -->
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', function () {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

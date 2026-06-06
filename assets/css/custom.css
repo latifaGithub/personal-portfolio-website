@@ -1,0 +1,162 @@
+/* ============================================================
+   Custom overrides for alhassansahad.com
+   Loads after the theme's main.css -higher specificity wins
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   Design tokens
+   ---------------------------------------------------------- */
+:root {
+  --accent:        #5E60CE;   /* deep indigo -replaces default teal */
+  --accent-hover:  #4B4DB8;
+  --accent-soft:   rgba(94, 96, 206, 0.12);
+  --card-shadow:   0 4px 16px rgba(0, 0, 0, 0.25);
+  --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.38);
+  --transition:    0.22s ease;
+}
+
+/* ----------------------------------------------------------
+   Global link accent colour
+   ---------------------------------------------------------- */
+a:hover {
+  color: var(--accent);
+}
+
+/* ----------------------------------------------------------
+   Post cards -lift + image zoom on hover
+   ---------------------------------------------------------- */
+.article-box {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: var(--card-shadow);
+}
+.article-box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Image zoom */
+.article-image {
+  transition: transform 0.4s ease;
+}
+
+.article-box:hover .article-image {
+  transform: scale(1.04);
+}
+
+/* Title link colour on hover */
+.article-title a {
+  transition: color var(--transition);
+}
+
+.article-title a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ----------------------------------------------------------
+   Tags -pill style with accent colour
+   ---------------------------------------------------------- */
+.tag {
+  background-color: var(--accent) !important;
+  border-radius: 20px;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 3px 10px;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.tag:hover {
+  background-color: var(--accent-hover) !important;
+  transform: translateY(-1px);
+}
+
+/* ----------------------------------------------------------
+   Read-time & meta -subtle style
+   ---------------------------------------------------------- */
+.page__meta {
+  font-size: 0.78em;
+  opacity: 0.72;
+}
+
+/* ----------------------------------------------------------
+   Article excerpt -slightly softer
+   ---------------------------------------------------------- */
+.article-excerpt {
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+/* ----------------------------------------------------------
+   Header / sidebar -accent underline on name
+   ---------------------------------------------------------- */
+.header h1 a,
+.header h1 {
+  position: relative;
+  display: inline-block;
+}
+
+.header h1::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 48px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+/* Subtitle colour nudge */
+.header h2 {
+  opacity: 0.9;
+}
+
+/* Location icon -soft teal → accent */
+.header .ion-md-pin {
+  color: var(--accent);
+}
+
+/* ----------------------------------------------------------
+   Footer -subtle top border
+   ---------------------------------------------------------- */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ----------------------------------------------------------
+   Pagination -accent buttons
+   ---------------------------------------------------------- */
+.pagination a {
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.pagination a:hover {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* ----------------------------------------------------------
+   Post page headings -left accent bar
+   ---------------------------------------------------------- */
+.post h2,
+.post h3 {
+  border-left: 3px solid var(--accent);
+  padding-left: 10px;
+}
+
+/* ----------------------------------------------------------
+   Inline code -softer background
+   ---------------------------------------------------------- */
+code {
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------
+   Smooth scrolling
+   ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}

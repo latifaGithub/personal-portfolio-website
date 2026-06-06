@@ -1,0 +1,186 @@
+---
+layout: home
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO / ABOUT (combined)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="about" class="section section-hero" >
+  <div class="container">
+
+    <p class="hero-greeting fade-in">Hi, I am</p>
+    <h1 class="hero-name fade-in">Alhassan Sahad.</h1>
+    <p class="hero-role fade-in">Data Scientist</p>
+
+    <div class="about-grid">
+
+      <div class="about-img-wrap fade-in">
+        <img src="{{ site.avatar_image }}" alt="Photo of {{ site.title }}">
+      </div>
+
+      <div class="about-body">
+
+        <p class="fade-in">
+          I'm a Data Scientist based in <strong>Seattle, WA</strong> with a master's degree in Data Science.
+          I'm passionate about applying machine learning to solve
+          real problems, always with a focus on measurable business impact over
+          theoretical complexity.
+        </p>
+
+        <p class="fade-in fade-in-d1">
+          My work spans the full ML/DS lifecycle: exploratory analysis, feature engineering,
+          model training and evaluation, and communicating results clearly to non-technical
+          stakeholders. Each project I take on is grounded in a clear business question
+          with concrete, quantifiable outcomes.
+        </p>
+
+        <p class="fade-in fade-in-d2">
+          I've applied these skills across domains including semantic segmentation, customer
+          segmentation, causal inference, statistical testing, and deep learning-based
+          recommendation systems. I'm currently open to
+          <strong>Data Scientist</strong> and <strong>ML Engineer</strong> roles.
+        </p>
+
+        <div class="hero-cta fade-in fade-in-d2">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="{{ site.resume_url }}" class="btn btn-outline" target="_blank" rel="noopener">
+            Download Resume ↗
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROJECTS
+     ═══════════════════════════════════════════════════════════ -->
+<section id="projects" class="section section-alt">
+  <div class="container">
+
+    <p class="section-label fade-in">Projects</p>
+    <h2 class="section-title fade-in">Featured Work</h2>
+    <p class="section-sub fade-in">
+      End-to-end data science projects, each with a full technical write-up and
+      clear business context from problem framing to actionable results.
+    </p>
+
+    <div class="projects-grid">
+      {% for post in site.posts %}{% unless post.type == 'blog' %}
+      <article class="project-card fade-in">
+
+        {% if post.image %}
+        <a href="{{ post.url }}" class="card-img-link" tabindex="-1" aria-hidden="true">
+          <div class="card-img">
+            <img src="/img{{ post.image }}" alt="{{ post.title }}" loading="lazy">
+          </div>
+        </a>
+        {% endif %}
+
+        <div class="card-body">
+
+          <h3 class="card-title">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </h3>
+
+          <p class="card-excerpt">
+            {% if post.description %}
+              {{ post.description | strip_html | truncate: 90 }}
+            {% else %}
+              {{ post.content | strip_html | truncate: 90 }}
+            {% endif %}
+          </p>
+
+          <a href="{{ post.url }}" class="card-link">
+            Read More <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+      </article>
+      {% endunless %}{% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BLOG
+     ═══════════════════════════════════════════════════════════ -->
+{% assign blog_posts = site.posts | where: "type", "blog" %}
+{% if blog_posts.size > 0 %}
+<section id="blog" class="section">
+  <div class="container">
+
+    <p class="section-label fade-in">Blog</p>
+    <h2 class="section-title fade-in">Latest Writing</h2>
+    <p class="section-sub fade-in">
+      In-depth articles on machine learning concepts, data science workflows,
+      and the ideas behind the work.
+    </p>
+
+    <div class="projects-grid">
+      {% for post in blog_posts %}
+      <article class="project-card fade-in">
+
+        <a href="{{ post.url }}" class="card-img-link" tabindex="-1" aria-hidden="true">
+          <div class="card-img blog-cover" style="background: {{ post.cover }};">
+            <span class="blog-cover-icon">{{ post.cover_icon }}</span>
+            <span class="blog-cover-meta">{{ post.date | date: "%b %Y" }} &nbsp;·&nbsp; {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+          </div>
+        </a>
+
+        <div class="card-body">
+          <h3 class="card-title">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </h3>
+          <p class="card-excerpt">
+            {% if post.description %}
+              {{ post.description | strip_html | truncate: 130 }}
+            {% else %}
+              {{ post.content | strip_html | truncate: 130 }}
+            {% endif %}
+          </p>
+          <a href="{{ post.url }}" class="card-link">
+            Read Article <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </article>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT
+     ═══════════════════════════════════════════════════════════ -->
+<section id="contact" class="section section-alt">
+  <div class="container">
+
+    <div class="contact-box">
+      <p class="section-label fade-in">Contact</p>
+      <h2 class="section-title fade-in">Let's Work Together</h2>
+      <p class="contact-desc fade-in">
+        I'm actively looking for <strong>Data Scientist</strong> and
+        <strong>ML Engineer</strong> opportunities — if you have a role, a project,
+        or just want to connect, my inbox is always open.
+      </p>
+      <div class="contact-links fade-in">
+        <a href="{{ site.resume_url }}" class="btn btn-primary" target="_blank" rel="noopener">
+          Download Resume
+        </a>
+        <a href="https://github.com/asahad" class="btn btn-outline" target="_blank" rel="noopener">
+          GitHub ↗
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
