@@ -14,7 +14,7 @@ author: Ahmed Bayugo Latifa
 subtitle: 'Computer Science Student <span style="color:#38BDF8">& Aspiring Data Scientist</span>'
 location: "Sunyani, Ghana"
 resume_url: /docs/Resume_Ahmed_Latifa.pdf
-avatar_image: /img/profile_picture.jpg
+avatar_image: /img/profile_picture.jpeg
 
 sass:
   sass_dir: _sass
