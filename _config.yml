@@ -1,26 +1,34 @@
+# Remote theme directory
+remote_theme: analytics-link/analytics-link.github.io
+
 plugins:
+  - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-remote-theme
 
 #-------------------------------
 # General Site Settings
-title: Ahmed Bayugo Latifa
-description: "Computer Science Student at the University of Energy and Natural Resources, Sunyani, Ghana. Passionate about machine learning and data science."
+title: Alhassan Sahad
+description: "Data Scientist based in Seattle. I build end-to-end machine learning systems — from deep learning and computer vision to causal inference and customer analytics — turning raw data into clear, actionable business decisions."
 baseurl: "" # keep empty for a custom domain at the root
-url: "https://ahmedlatifa.com" # your custom domain
-author: Ahmed Bayugo Latifa
+url: "https://alhassansahad.com" # your custom domain
+author: Alhassan Sahad
 
 #-------------------------------
 # About Section
 # (Quoted because it contains HTML)
-subtitle: 'Computer Science Student <span style="color:#38BDF8">& Aspiring Data Scientist</span>'
-location: "Sunyani, Ghana"
-resume_url: /docs/Resume_Ahmed_Latifa.pdf
-avatar_image: /img/profile_picture.jpg
+subtitle: 'Data Scientist <span style="color:#38BDF8">& ML Engineer</span>'
+location: "Seattle, WA"
+resume_url: /docs/Resume_Alhassan_Sahad.pdf
+avatar_image: /img/profile_picture_alhassan_sahad.jpg
 
 #-------------------------------
 # Contact links
 # linkedln: "https://www.linkedin.com/in/louis-ag/#" # Add your linkedln handle
 # github: "https://github.com/asahad/#" # Add your github handle
+
+paginate: 6
+paginate_path: "/page/:num"
 
 sass:
   sass_dir: _sass
