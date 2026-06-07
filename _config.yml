@@ -1,5 +1,4 @@
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
 
 #-------------------------------
@@ -22,9 +21,6 @@ avatar_image: /img/profile_picture.jpg
 # Contact links
 # linkedln: "https://www.linkedin.com/in/louis-ag/#" # Add your linkedln handle
 # github: "https://github.com/asahad/#" # Add your github handle
-
-paginate: 6
-paginate_path: "/page/:num"
 
 sass:
   sass_dir: _sass
