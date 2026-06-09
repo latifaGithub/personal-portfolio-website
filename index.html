@@ -3,14 +3,14 @@ layout: home
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     HERO / ABOUT (combined)
+     ABOUT
      ═══════════════════════════════════════════════════════════ -->
-<section id="about" class="section section-hero" >
+<section id="about" class="section section-hero">
   <div class="container">
 
     <p class="hero-greeting fade-in">Hi, I am</p>
     <h1 class="hero-name fade-in">Ahmed Bayugo Latifa.</h1>
-    <p class="hero-role fade-in">Computer Science Student</p>
+    <p class="hero-role fade-in">Final Year CS Student &amp; Aspiring Researcher</p>
 
     <div class="about-grid">
 
@@ -21,25 +21,39 @@ layout: home
       <div class="about-body">
 
         <p class="fade-in">
-          I'm a Computer Science Student based in <strong>Ghana</strong> at the University of Energy and Natural Resources, Sunyani.
+          I'm a final-year Computer Science student at the <strong>University of Energy and Natural
+          Resources</strong> in Sunyani, Ghana. Four years in, I've moved from wondering how algorithms
+          work to actually building systems that do things — and now I'm hungry for the research
+          questions nobody has answered yet.
         </p>
 
         <p class="fade-in fade-in-d1">
-          My work spans the full ML/DS lifecycle: exploratory analysis, feature engineering,
-          model training and evaluation, and communicating results clearly to non-technical
-          stakeholders. Each project I take on is grounded in a clear business question
-          with concrete, quantifiable outcomes.
+          My work sits at the intersection of machine learning and real-world problems. I'm drawn
+          to questions about how we build systems that don't just perform well on benchmarks, but
+          that are robust, fair, and meaningful in practice — especially in contexts that are
+          often overlooked by mainstream research.
         </p>
 
         <p class="fade-in fade-in-d2">
-          I've applied these skills across domains including semantic segmentation, customer
-          segmentation, causal inference, statistical testing, and deep learning-based
-          recommendation systems. I'm currently open to
-          <strong>Data Scientist</strong> and <strong>ML Engineer</strong> roles.
+          I read papers for fun, get unreasonably excited about a good visualisation, and believe
+          that some of the most important AI research will come from places like Ghana. I'm
+          currently seeking <strong>fully funded PhD/MS</strong> opportunities at US universities
+          for <strong>Spring or Fall 2027</strong>.
         </p>
 
+        <div class="research-interests fade-in fade-in-d2">
+          <p class="interests-label">Research Interests</p>
+          <div class="interests-tags">
+            <span class="interest-tag">Machine Learning</span>
+            <span class="interest-tag">Computer Vision</span>
+            <span class="interest-tag">Natural Language Processing</span>
+            <span class="interest-tag">Deep Learning</span>
+            <span class="interest-tag">Data Science</span>
+          </div>
+        </div>
+
         <div class="hero-cta fade-in fade-in-d2">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#research" class="btn btn-primary">View My Work</a>
           <a href="{{ site.resume_url }}" class="btn btn-outline" target="_blank" rel="noopener">
             Download Resume ↗
           </a>
@@ -53,20 +67,20 @@ layout: home
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     PROJECTS
+     RESEARCH & PROJECTS
      ═══════════════════════════════════════════════════════════ -->
-<section id="projects" class="section section-alt">
+<section id="research" class="section section-alt">
   <div class="container">
 
-    <p class="section-label fade-in">Projects</p>
+    <p class="section-label fade-in">Research &amp; Projects</p>
     <h2 class="section-title fade-in">Featured Work</h2>
     <p class="section-sub fade-in">
-      End-to-end data science projects, each with a full technical write-up and
-      clear business context from problem framing to actionable results.
+      End-to-end research projects and technical work, each with a full write-up from
+      problem framing through methodology to results.
     </p>
 
     <div class="projects-grid">
-      {% for post in site.posts %}{% unless post.type == 'blog' %}
+      {% for post in site.posts %}{% unless post.type == 'blog' or post.type == 'paper-review' %}
       <article class="project-card fade-in">
 
         {% if post.image %}
@@ -78,6 +92,14 @@ layout: home
         {% endif %}
 
         <div class="card-body">
+
+          {% if post.tags %}
+          <div class="card-tags">
+            {% for tag in post.tags %}
+            <span class="card-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
 
           <h3 class="card-title">
             <a href="{{ post.url }}">{{ post.title }}</a>
@@ -105,11 +127,73 @@ layout: home
 
 
 <!-- ═══════════════════════════════════════════════════════════
+     RESEARCH PAPERS READ
+     ═══════════════════════════════════════════════════════════ -->
+{% assign paper_reviews = site.posts | where: "type", "paper-review" %}
+{% if paper_reviews.size > 0 %}
+<section id="papers" class="section">
+  <div class="container">
+
+    <p class="section-label fade-in">Research Papers Read</p>
+    <h2 class="section-title fade-in">Papers I've Read</h2>
+    <p class="section-sub fade-in">
+      My annotated notes on papers that have shaped how I think — going beyond summary
+      to engage critically with the ideas, methods, and what they mean for research.
+    </p>
+
+    <div class="projects-grid">
+      {% for post in paper_reviews %}
+      <article class="project-card paper-card fade-in">
+
+        <a href="{{ post.url }}" class="card-img-link" tabindex="-1" aria-hidden="true">
+          <div class="card-img paper-cover" style="background: {{ post.cover }};">
+            <span class="paper-cover-icon">{{ post.cover_icon | default: "📄" }}</span>
+            <span class="paper-cover-venue">{{ post.venue }}</span>
+          </div>
+        </a>
+
+        <div class="card-body">
+          <p class="paper-card-authors">{{ post.authors }}</p>
+          <h3 class="card-title">
+            <a href="{{ post.url }}">{{ post.paper_title }}</a>
+          </h3>
+
+          {% if post.tags %}
+          <div class="card-tags">
+            {% for tag in post.tags %}
+            <span class="card-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <p class="card-excerpt">
+            {% if post.description %}
+              {{ post.description | strip_html | truncate: 130 }}
+            {% else %}
+              {{ post.content | strip_html | truncate: 130 }}
+            {% endif %}
+          </p>
+
+          <a href="{{ post.url }}" class="card-link">
+            Read Notes <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ═══════════════════════════════════════════════════════════
      BLOG
      ═══════════════════════════════════════════════════════════ -->
 {% assign blog_posts = site.posts | where: "type", "blog" %}
 {% if blog_posts.size > 0 %}
-<section id="blog" class="section">
+<section id="blog" class="section section-alt">
   <div class="container">
 
     <p class="section-label fade-in">Blog</p>
@@ -158,15 +242,15 @@ layout: home
 <!-- ═══════════════════════════════════════════════════════════
      CONTACT
      ═══════════════════════════════════════════════════════════ -->
-<section id="contact" class="section section-alt">
+<section id="contact" class="section">
   <div class="container">
 
     <div class="contact-box">
       <p class="section-label fade-in">Contact</p>
-      <h2 class="section-title fade-in">Let's Work Together</h2>
+      <h2 class="section-title fade-in">Let's Connect</h2>
       <p class="contact-desc fade-in">
-        I'm actively looking for <strong>Data Scientist</strong> and
-        <strong>ML Engineer</strong> opportunities — if you have a role, a project,
+        I'm actively seeking <strong>fully funded PhD/MS</strong> opportunities at US universities
+        for <strong>Spring or Fall 2027</strong>. If you are a faculty member, admissions advisor,
         or just want to connect, my inbox is always open.
       </p>
       <div class="contact-links fade-in">
