@@ -59,7 +59,8 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="/#about">About</a></li>
-        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#research">Research</a></li>
+        <li><a href="/#reading-notes">Notes</a></li>
         <li><a href="/#blog">Blog</a></li>
         <li><a href="/#contact">Contact</a></li>
         <li>
@@ -112,6 +113,28 @@
     <div class="container">
 
       <article class="post-body">
+        {% if page.type == 'paper-review' %}
+        <div class="paper-info-box">
+          <div class="paper-info-row">
+            <span class="paper-info-label">Paper</span>
+            <span class="paper-info-value">{{ page.paper_title }}</span>
+          </div>
+          <div class="paper-info-row">
+            <span class="paper-info-label">Authors</span>
+            <span class="paper-info-value">{{ page.authors }}</span>
+          </div>
+          <div class="paper-info-row">
+            <span class="paper-info-label">Venue</span>
+            <span class="paper-info-value">{{ page.venue }}</span>
+          </div>
+          {% if page.paper_url %}
+          <div class="paper-info-row">
+            <span class="paper-info-label">Link</span>
+            <a href="{{ page.paper_url }}" class="paper-info-link" target="_blank" rel="noopener">Read Paper ↗</a>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
         {{ content }}
       </article>
 

@@ -1185,3 +1185,141 @@ ul, ol {
 .footer-links a:hover {
   color: var(--accent);
 }
+
+
+/* ── Research Interests (About section) ──────────────────────── */
+.research-interests {
+  margin-top: 24px;
+  margin-bottom: 4px;
+}
+
+.interests-label {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+
+.interests-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.interest-tag {
+  font-size: 0.82rem;
+  color: var(--text-h);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.interest-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ── Paper Review Cards (Reading Notes section) ──────────────── */
+.paper-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.paper-cover-icon {
+  font-size: 2.6rem;
+  line-height: 1;
+  z-index: 1;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .paper-cover-icon {
+  transform: scale(1.1);
+}
+
+.paper-cover-venue {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
+  z-index: 1;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.paper-card-authors {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+
+/* ── Paper Info Box (post page header) ───────────────────────── */
+.paper-info-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paper-info-row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.paper-info-label {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.paper-info-value {
+  font-size: 0.9rem;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.paper-info-link {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+
+.paper-info-link:hover {
+  opacity: 0.75;
+}
